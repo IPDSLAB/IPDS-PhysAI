@@ -26,3 +26,6 @@ ROBOT_IP = "172.16.3.128" #308호 로봇암 현재 주소
               ; joint = np.array([base, shoulder, elbow, wrist1, wrist2, wrist3]) 에 입력된 joint 값으로 이동.
 > [codot_pose_head] : [cobot_pode_test] 에 사용되는 cobot 라이브러리 불러온 파일  
 > [cobot_pose_test] : 코드 내에서 지정한 여러개의 pose(1~n)을 반복 동작함.   
+
+
+test
