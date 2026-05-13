@@ -3,9 +3,12 @@
 공동 리포지토리에서 직접 수정할 경우, 동기화 과정에서 내용이 삭제되거나 꼬일 수 있으니  
 수정이 필요하시면 반드시 관리자에게 문의해 주세요.  
 
-# rainbow_robotics_rb5-850
-한팔로봇 동작과 rbpodo 예  
-> rbpodo_ex.py 는 rbpodo 깃허브의 예제와 동일함
+# rainbow_robotics_rb5-850_manual  
+한팔로봇 프로그래밍을 위한 기초적인 예제
+> rbpodo_ex.py 는 rbpodo 깃허브의 예제와 동일함  
+> 티치팬던트 가장 오른쪽 상단에 보이는 두 좌표 중
+왼쪽 좌표는 move_l로 사용되는 좌표이고,  
+오른쪽 좌표는 move_j로 사용되는 좌표이다.   
 
 # 링크  
 > :: rbpodo github  
