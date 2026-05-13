@@ -1,6 +1,6 @@
 # rainbow_robotics_rb5-850
 한팔로봇 동작과 rbpodo 예  
-> rb_ex(n).py 는 rbpodo 깃허브의 예제와 동일함
+> rbpodo_ex.py 는 rbpodo 깃허브의 예제와 동일함
 
 # 링크  
 > :: rbpodo github  
