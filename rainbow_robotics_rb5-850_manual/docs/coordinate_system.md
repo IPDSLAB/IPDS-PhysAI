@@ -12,6 +12,8 @@
 
 ## Move J 좌표 읽는 법
 
+<img width="669" height="789" alt="Image" src="https://github.com/user-attachments/assets/a1d1fa80-aafe-4614-be6b-a374c9e74bc9" />
+
 티치 펜던트 우측 상단에 두 좌표가 표시됩니다.
 
 - **왼쪽 좌표** → `move_l` 에 사용되는 직교 좌표 (X, Y, Z, RX, RY, RZ)
