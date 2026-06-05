@@ -1,0 +1,27 @@
+name: Sync to IPDS PhysAI Repo
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Prepare files (exclude .git)
+        run: |
+          rsync -a --exclude='.git' --exclude='_sync' ./ ./_sync/
+
+      - name: Pushes to Another Repository
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source-directory: '_sync'
+          destination-github-username: 'HwiKimIPDS'
+          destination-repository-name: 'IPDS-PhysAI'
+          user-email: 'your_email@example.com'
+          target-directory: 'rainbow_robotics_rb5-850_manual_IPDS'
+          target-branch: 'feature/yeramonster'
