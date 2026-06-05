@@ -22,4 +22,4 @@ jobs:
           destination-repository-name: 'IPDS-PhysAI'
           user-email: 'your_email@example.com'
           target-directory: 'rainbow_robotics_rb5-850_manual'
-          target-branch: 'main'
+          target-branch: 'feature/yeramonster'
