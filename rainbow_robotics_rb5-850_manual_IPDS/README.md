@@ -15,6 +15,7 @@ Rainbow Robotics **RB5-850** 한팔(6축) 협동로봇 프로그래밍을 위한
 ```
 rainbow_robotics_rb5-850/
 ├── basics/                     # 기초 동작 예제
+│   ├── go_home.py              # 홈 좌표로 이동
 │   ├── rbpodo_ex1.py           # 실시간 위치 전송
 │   ├── rbpodo_ex2.py           # move_l (직선 이동)
 │   └── rbpodo_ex3.py           # move_j (관절 이동)
