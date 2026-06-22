@@ -134,6 +134,7 @@ CURT_2026_KimTaewoo
 Jetson Orin NX 환경에서 Depth Anything V2 및 V3 실행에 성공하였으며, Webcam 기반 실시간 Depth Estimation 환경을 구축하였다.
 
 또한 ROI 기반 거리 변화 측정을 통해 단안 카메라 기반 Autofocus 응용 가능성을 검증하였으며, Docker 및 ROS2 Wrapper 적용을 시도하여 향후 Robot Vision 시스템으로의 확장 가능성을 확인하였다.
+
 ---
 
 ## Future Work
