@@ -6,6 +6,24 @@ Jetson Orin NX 환경에서 AI 비전 모델(Depth Anything)을 실행하기 위
 
 ---
 
+## Tested Hardware
+
+### Host PC
+
+* HP Victus 16
+* Intel Core i5-12500H
+* Windows 11
+
+### Target Device
+
+* Jetson Orin NX 16GB
+
+### Camera
+
+* Logitech C922 Pro Stream Webcam
+
+---
+
 ## Hardware
 
 * Jetson Orin NX 16GB
@@ -17,12 +35,26 @@ Jetson Orin NX 환경에서 AI 비전 모델(Depth Anything)을 실행하기 위
 
 ## Software
 
+### Host Environment
+
 * Windows 11
 * WSL2 (Windows Subsystem for Linux)
-* Ubuntu 22.04
+* Ubuntu 22.04 (WSL)
+
+### Jetson Environment
+
+* JetPack 6.2.2
+* Jetson Linux R36.5.0
+* CUDA 12.6
+* Python 3.10.12
+
+### Development Tools
+
 * NVIDIA SDK Manager
-* JetPack 6.x
-* CUDA 12.x
+* OpenCV
+* V4L2
+* Git
+
 
 ---
 
