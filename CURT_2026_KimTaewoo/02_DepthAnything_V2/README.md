@@ -1,0 +1,17 @@
+# Depth Anything V2
+
+## Objective
+
+Jetson Orin NX 환경에서 Depth Anything V2 모델을 실행한다.
+
+## Installation
+
+GitHub 저장소를 Clone 후 필요한 라이브러리를 설치하였다.
+
+## Execution
+
+예제 이미지를 이용하여 Depth Estimation을 수행하였다.
+
+## Result
+
+Depth Anything V2가 Jetson Orin NX 환경에서 정상 동작함을 확인하였다.
