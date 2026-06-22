@@ -2,7 +2,7 @@
 
 ## Objective
 
-Jetson Orin NX 환경에서 AI 비전 모델 실행을 위한 개발 환경을 구축한다.
+Jetson Orin NX 환경에서 AI 비전 모델(Depth Anything)을 실행하기 위한 개발 환경을 구축한다.
 
 ---
 
@@ -45,9 +45,7 @@ WSL2 사용을 위해 CPU 가상화 기능이 활성화되어 있어야 한다.
 
 Windows 작업 관리자(Task Manager)를 이용하여 가상화 상태를 확인하였다.
 
-```text
 Virtualization : Enabled
-```
 
 가상화 기능이 정상적으로 활성화된 것을 확인하였다.
 
@@ -69,9 +67,7 @@ Ubuntu 최초 실행 시 다음 설정을 진행하였다.
 
 초기 실행 시 아래와 같은 메시지가 출력되었다.
 
-```text
 Would you like to opt-in to platform metrics collection (Y/n)?
-```
 
 이는 Ubuntu 사용 통계 수집 여부를 묻는 항목이며 설치 과정에는 영향을 주지 않는다.
 
@@ -88,11 +84,7 @@ Would you like to opt-in to platform metrics collection (Y/n)?
 
 Ubuntu Shell이 정상적으로 실행되는지 확인하였다.
 
-```bash
 user@DESKTOP-VNU2DOF:/mnt/c/WINDOWS/system32$
-```
-
-위와 같은 Prompt가 출력되는 것을 확인하였다.
 
 확인 항목:
 
@@ -154,10 +146,9 @@ SDK Manager에서 다음과 같이 설정하였다.
 
 SDK Manager 로그를 통해 Jetson 장치 인식을 확인하였다.
 
-```text
 Device flash pre launch final sweep has been passed.
+
 Identified 'jetson-orin-nano-devkit' target board.
-```
 
 플래싱 시작 전 사전 점검이 정상적으로 완료된 상태이다.
 
@@ -167,9 +158,7 @@ Identified 'jetson-orin-nano-devkit' target board.
 
 플래싱이 시작되면서 Ubuntu 및 JetPack 이미지가 Jetson 장치에 기록되기 시작하였다.
 
-```text
 sudo ./nvsdkmanager_flash.sh
-```
 
 Jetson 재부팅 및 재연결 과정이 자동으로 수행되었다.
 
@@ -228,6 +217,85 @@ Jetson 재부팅 및 재연결 과정이 자동으로 수행되었다.
 
 ---
 
+# Network Troubleshooting
+
+## Initial Network Issue
+
+Jetson Ubuntu 부팅 후 학교 건물 내 벽면 LAN 포트를 이용하여 인터넷 연결을 시도하였으나 정상적으로 인터넷을 사용할 수 없었다.
+
+확인된 사항:
+
+* Ethernet 인터페이스 인식 정상
+* 랜 케이블 연결 정상
+* 물리적 링크 연결 정상
+* 인터넷 접속 불가
+
+---
+
+## Network Verification
+
+네트워크 상태를 확인하기 위해 다음 명령어를 사용하였다.
+
+```bash
+ping -c 4 8.8.8.8
+ping -c 4 google.com
+ip a
+ip route
+```
+
+인터넷 연결 및 DNS 동작 여부를 점검하였다.
+
+---
+
+## Cause Analysis
+
+추가 테스트 결과 Jetson 장비 자체의 네트워크 문제는 아니었다.
+
+다음 환경에서는 정상적으로 인터넷 연결이 가능하였다.
+
+* Wi-Fi 공유기 LAN 포트
+* 스마트폰 USB 테더링
+
+반면 학교 건물 내 벽면 LAN 포트에서는 인터넷 연결이 불가능하였다.
+
+이를 통해 Jetson 설정 문제가 아닌 학내 네트워크 정책 또는 인증 절차에 의한 제한으로 판단하였다.
+
+예상 원인:
+
+* 기기 등록(MAC Address Registration)
+* NAC(Network Access Control)
+* 사용자 인증 절차
+* 학내 네트워크 정책
+
+---
+
+## Temporary Solution
+
+개발 환경 구축을 위해 스마트폰 USB 테더링을 사용하였다.
+
+### Procedure
+
+1. 스마트폰 USB 연결
+2. USB 테더링 활성화
+3. Jetson에서 네트워크 장치 자동 인식 확인
+
+---
+
+## Result
+
+USB 테더링을 이용하여 정상적으로 인터넷 연결에 성공하였다.
+
+이를 통해 다음 작업을 수행하였다.
+
+* apt update
+* apt install
+* Git Clone
+* Python Package 설치
+* CUDA 관련 패키지 설치
+* 개발 환경 구성
+
+---
+
 # Post Installation Configuration
 
 ## 1. USB Webcam Recognition Test
@@ -267,9 +335,7 @@ v4l2-ctl --list-devices
 
 주 사용 장치:
 
-```text
 /dev/video0
-```
 
 실시간 영상 입력이 정상적으로 동작하는 것을 확인하였다.
 
@@ -281,10 +347,9 @@ v4l2-ctl --list-devices
 
 대표적인 증상:
 
-```text
 Waiting for cache lock
+
 Could not get lock
-```
 
 원인 분석 결과 다른 프로세스가 apt 패키지 관리자를 사용 중인 상태였다.
 
@@ -343,9 +408,26 @@ sudo apt install ibus-hangul
 
 # Lessons Learned
 
+## Development Environment
+
 * Windows 환경에서도 WSL2를 이용하여 Jetson 개발 환경을 구축할 수 있다.
 * BIOS 가상화 설정은 WSL2 사용을 위한 필수 조건이다.
 * SDK Manager 사용 시 WSL 환경 검증이 중요하다.
+
+## Flashing
+
 * Jetson 플래싱 과정에서는 안정적인 전원 공급이 중요하다.
 * 플래싱 도중 오류가 발생하더라도 Ubuntu가 부분적으로 설치될 수 있다.
-* 개발 환경 검증은 실제 카메라 및 CUDA 테스트를 통해 수행해야 한다.
+* JetPack 설치 완료 여부는 실제 개발 환경 검증을 통해 확인해야 한다.
+
+## Networking
+
+* Jetson 자체 네트워크 문제와 네트워크 인프라 문제를 구분하는 것이 중요하다.
+* 학내 벽면 LAN 포트는 추가 인증 또는 등록 절차가 필요할 수 있다.
+* 동일 장비를 다른 네트워크 환경에서 테스트하면 원인 분석에 도움이 된다.
+* USB 테더링은 초기 개발 환경 구축 시 유용한 대체 수단이 될 수 있다.
+
+## Development
+
+* 실제 카메라 및 CUDA 테스트를 통해 개발 환경을 검증해야 한다.
+* 초기 환경 구축 과정에서 발생한 문제와 해결 방법을 기록해두는 것이 이후 유지보수에 도움이 된다.
